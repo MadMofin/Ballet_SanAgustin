@@ -1,0 +1,476 @@
+/*IMPORTANDO BOOTSTRAP*/
+@import "node_modules/bootstrap/scss/bootstrap";
+
+/*DECLARANDO LAS FUENTES LOCALES*/
+@font-face {
+  font-family: 'Pacifico';
+  src: url("Fonts/Pacifico.ttf");
+}
+
+@font-face {
+  font-family: 'Admiration Pains';
+  src: url("Fonts/Admiration Pains.ttf");
+}
+
+.background{
+	background: linear-gradient(#ffffff 1%, #1b1b1b 60%);
+}
+
+.main-logo{
+	width: 20%;
+	height: 25%;
+	left: 0px;
+	position: fixed;
+	z-index: 2;
+	top: -25px;
+}
+
+.my-nav{
+	z-index: 1;
+}
+
+.about-us{
+	text-align: justify;
+	text-justify: inter-word;
+	background-color: #1b1b1b;
+}
+
+.my-modal-dialog{
+	width: 70%;
+}
+
+.my-modal-content{
+	background-image: url('Images/backgroundModal.png');
+	background-repeat: no-repeat;
+	background-position: right bottom;
+	background-size: 50%;
+	box-shadow: 5px 5px #827c7c3b; 
+}
+
+.my-modal-header{
+	height: 10%;
+	color: #f099ab;
+	margin-top: -10px;
+	background: linear-gradient(to bottom, rgba(0,0,0,0), rgb(255, 255, 255));
+}
+
+.my-modal-header h1{
+	font-family: Pacifico;
+	margin: 0px;
+	margin-top: -15px;
+	margin-bottom: -20px;
+	font-size: 50px;
+	text-align: left;
+	display: inline-block;
+}
+
+.my-modal-body h3{
+	font-family: pacifico;
+	font-size: 18px;
+	color: #2e1b08;
+	padding: 0px;
+	margin: 0px;
+	margin-bottom: 5px; 
+}
+
+.my-modal-body b{
+	color: #2e1b08;
+}
+
+.my-modal-body p{
+	font-weight: 500;
+}
+
+.my-modal-body h4{
+	color: #8355a7;
+	font-size: 28px;
+	font-family: Pacifico;
+}
+
+.horario div{
+	font-weight: 700;
+	margin: 4px;
+	font-size: 10px;
+	vertical-align: middle;
+}
+
+.horario-purple{
+	background-color: #d090fb;
+	color: #5d0ac0;
+	height: 70px;
+}
+
+.horario-green-purple{
+	background: linear-gradient(to bottom left, rgb(189, 255, 219), rgb(208, 144, 254));
+	color: #4bc08c;
+	height: 70px;
+}
+
+.horario-yellow{
+	background-color: #fbffaa;
+	color: #9a9e10;
+	height: 70px;
+}
+
+.horario-pink{
+	background-color: #fbd7fe;
+	color: #a457bb;
+	height: 70px;
+}
+
+.horario-green{
+	background-color: #bdffdb;
+	color: #49c790;
+	height: 70px;
+}
+
+.horario-lemon{
+	background-color: #d9fe95;
+	color: #6fb115;
+	height: 70px;
+}
+
+.horario-hour{
+	background-color: #f26ce6;
+	color: #a22993;
+	height: 70px;
+}
+
+.horario-day{
+	height: 10px;
+}
+
+.bot-text{
+	font-weight: 700;
+	font-size: 8px;
+}
+
+.horario-purple:hover{
+	background-color: #9449c7;
+	color: white;
+}
+
+.horario-green-purple:hover{
+	background: linear-gradient(to bottom left, #82d4a7,#9449c7);
+	color: white;
+}
+
+.horario-yellow:hover{
+	background-color: #d7dc6b;
+	color: white;
+}
+
+.horario-pink:hover{
+	background-color: #e795ef;
+	color: white;
+}
+
+.horario-green:hover{
+	background-color: #82d4a7;
+	color: white;
+}
+
+.horario-lemon:hover{
+	background-color: #bbea63;
+	color: white;
+}
+
+.Nomenclatura-pink{
+	color: #fbd7fe;
+	font-size: 20px;
+}
+
+.Nomenclatura-pink:hover{
+	color: #e795ef;
+}
+
+.Nomenclatura-green{
+	color: #bdffdb;
+	font-size: 20px;
+}
+
+.Nomenclatura-green:hover{
+	color: #82d4a7;
+}
+
+.Nomenclatura-purple{
+	color: #d090fb;
+	font-size: 20px;
+}
+
+.Nomenclatura-purple:hover{
+	color: #9449c7;
+}
+
+.Nomenclatura-yellow{
+	color: #fbffaa;
+	font-size: 20px;
+}
+
+.Nomenclatura-yellow:hover{
+	color: #d7dc6b;
+}
+
+.text-nomenclatura{
+	font-family: pacifico;
+	font-size: 12px;
+}
+
+.img-fb{
+	height: 20px;
+	display: inline-block;
+}
+
+.img-tel{
+	height: 20px;
+	display: inline-block;
+}
+
+.about-us p{
+	display: inline-block;
+	color: white;
+}
+
+.about-us a{
+	color: white;
+}
+
+.about-us h3, .about-us h4{
+	font-family: pacifico;
+	color: #FAEFA0;
+}
+
+.article{
+	background-color: white;
+	box-shadow: 5px 5px #d8d4d4;
+	margin-bottom: 15px;
+}
+
+.img-article{
+	padding-bottom: 15px;
+}
+
+.article h1{
+	color: hotpink;
+}
+
+.img-marco{
+	position: absolute;
+	top: -90px;
+	height: 150px;
+	width: 200px;
+	left: 40%;
+}
+
+.article sub{
+	position: absolute;
+	right: 0px;
+	padding-bottom: 15px;
+	padding-right: 10px;
+}
+
+.article p{
+	text-align: justify;
+	text-justify: inter-word;
+	font-family: verdana;
+	color: #363636;
+}
+
+.pagos{
+	background-color: white;
+	border-radius: 5px;
+}
+
+.pagos .row:first-child{
+	background-color: #f099ab;
+}
+
+.datos-pagos div{
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+
+.pagos h2{
+	color:white;
+	font-size: 20px;
+	font-family: pacifico;
+}
+
+.datos-pagos{
+	border-bottom: solid 2px #bbb7b7;
+}
+
+.btn-pagado{
+	background-color: #f099ab;
+	color: white;
+	width: 100%;
+}
+
+.datos-pagos p{
+	font-family: verdana;
+}
+
+.ins-type div{
+	background-color: white;
+}
+
+.Inscripcion h5{
+	font-family: pacifico;
+	color: #f099ab;
+}
+
+.img-ins{
+	position: absolute;
+	right: -10px;
+	height: 90%;
+	bottom: 0px;
+}
+
+.btn-inscripcion{
+	position: absolute;
+	right: 200px;
+	bottom: 20px;
+	color: white;
+	background-image: url('Images/flor.png');
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: 400%;
+	width: 100px;
+	height: 100px;
+	border: none;
+	border-radius: 50px 50px;
+	font-family: pacifico;
+}
+
+.img-cake{
+	width: 100%;
+	height: auto;
+}
+
+.list-birth{
+	list-style: none;
+	color: #f099ab;
+	font-family: verdana;
+	font-size: 16px;
+	padding-left: 0px;
+}
+
+.list-birth li{
+	padding-bottom: 10px;
+}
+
+.list-birth b{
+	color: #c17e8c;
+}
+
+.img-list{
+	width: 20px;
+	height: 20px;
+	display: inline-block;
+}
+
+.text-birth{
+	color: #5a021f; 
+	font-size: 20px;
+	font-family: verdana;
+}
+
+.texto-article{
+	padding-top: 75px;
+}
+
+.btn-admin{
+	margin-top: 10px;
+	width: 30%;
+	height: 50px;
+}
+
+/*Estilos Mobil*/
+@media only screen and (max-width: 768px) {
+.texto-article{
+	padding-top: 15px;
+}
+
+.img-article{
+	padding-bottom: 5px;
+}
+
+.img-marco{
+	position: absolute;
+	top: -90px;
+	height: 150px;
+	width: 200px;
+	left: 22%;
+}
+
+.article h4{
+	font-size: 12px;
+}
+
+.article sub{
+	margin-bottom: -15px;
+}
+
+.main-logo{
+	width: 40%;
+	height: 20%;
+	left: 0px;
+	position: fixed;
+	z-index: 2;
+	top: -20px;
+}
+
+.my-modal-dialog{
+	width: 99%;
+	margin-left:-1px;
+}
+
+.horario-pink, .horario-lemon, .horario-purple,.horario-yellow,.horario-green-purple,.horario-hour,.horario-green{
+	height: 50px;
+	font-size: 12px;
+	writing-mode: tb-rl;
+}
+
+.horario div{
+	margin: 6px;
+	font-weight: 300;
+	font-size: 9px;
+}
+
+.text-nomenclatura{
+	font-family: verdana;
+	font-weight: 700;
+	font-size: 10px;
+}
+
+.cel-nom{
+	text-align: left;
+	font-size: 7px;
+}
+
+.horario-green-purple{
+	color: #5d0ac0;
+}
+
+.my-modal-body h3{
+	padding-top: 10px;
+}
+
+.my-modal-dialog-admin{
+	width: 50%;
+}
+
+.pagos{
+	font-size: 10px;
+}
+
+.btn-pagado{
+	border-radius: 50px;
+	width: 40px;
+}
+
+.btn-inscripcion{
+	bottom: 0px;
+	right: 0px;
+}
+}
