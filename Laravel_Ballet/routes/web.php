@@ -15,6 +15,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('administracion', function () {
-    return view('admin');
-});
+Route::get('administracion','UsuariosController@Show');
+
+Route::post('/AgregarUsuario','UsuariosController@store');
+

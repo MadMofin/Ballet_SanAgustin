@@ -16,6 +16,10 @@
 	background: linear-gradient(#ffffff 1%, #1b1b1b 60%);
 }
 
+.background2{
+	background-color: #1b1b1b;
+}
+
 .main-logo{
 	width: 20%;
 	height: 25%;
