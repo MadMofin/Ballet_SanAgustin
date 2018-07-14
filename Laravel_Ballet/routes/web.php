@@ -15,7 +15,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('administracion','UsuariosController@Show');
+Route::get('/administracion','UsuariosController@index');
 
 Route::post('/AgregarUsuario','UsuariosController@store');
+
+Route::post('/CambiarPago/{id}','UsuariosController@ModifyPay')->where(['id' => '[0-9]+']);
+
+Route::post('/BorrarNina/{id}','UsuariosController@destroy')->where(['id' => '[0-9]+']);
+
+Route::post('/PagarNina/{id}','UsuariosController@Pay')->where(['id' => '[0-9]+']);
 

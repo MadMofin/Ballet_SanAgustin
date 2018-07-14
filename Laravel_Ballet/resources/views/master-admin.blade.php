@@ -10,6 +10,45 @@
 
     </head>
     <body class="background2">
+
+       <div id="CumpleanosModal" class="modal fade" role="dialog">
+                <div class="modal-dialog my-modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header my-modal-header"><center>
+                          <div class="row">      
+                          <div class="col-md-11 Modal-Text">
+                          <h1>¡Feliz Cumpleaños!</h1>
+                          </div>
+                          <div class="col-md-1">
+                              <button type="button" class="close my-close" data-dismiss="modal"> &times;
+                        </button>
+                          </div>
+                          </div></center>
+                    </div>
+                    <div class="modal-body my-modal-body">
+                     
+                        <div class="container Inscripcion">
+                            <div class="row">
+                              <div class="col-md-5">
+                                <h2 class="text-birth">Estas son las niñas que cumplen años este mes!</h2><br>
+                                <ul class="list-birth">
+
+                                 @yield('cumpleanos')
+                                 
+                                </ul>
+                              </div>
+                              <div class="col-md-4">
+                              <img src="Images/cake.png" class="img-responsive img-cake">
+                            </div>
+                              
+                            </div>
+                        </div>
+
+                    </div>                  
+                </div>
+                </div>
+            </div>
+
      
     <img src="Images/logo.png" class="main-logo">
 
@@ -27,26 +66,63 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
                   <li><a data-toggle="modal" data-target="#InscribirModal">Inscribir</a></li>
-                  <li><a data-toggle="modal" data-target="#CumpleañosModal">Cumpleaños</a></li>
+                  <li><a data-toggle="modal" data-target="#CumpleanosModal">Cumpleaños</a></li>
                 </ul>
             </div>
           </div>
         </nav>
+
         <br><br><br><br>
         <div class="container pagos">
         	<div class="row">
-        		<center><h2>Pagos de hoy 9 de Julio 2018</h2></center>
-        		<div class="col-md-1 col-lg-1 visible-md-inline visible-lg-inline"><b>Matricula</b></div>
+        		<center><h2>Pagos de hoy @yield('fecha-hoy')</h2></center>
         		<div class="col-md-5 col-lg-5 col-xs-6 col-sm-6"><b>Datos</b></div>
-        		<div class="col-md-2 col-lg-2 col-xs-2 col-sm-2"><b>Clases</b></div>
+        		<div class="col-md-3 col-lg-3 col-xs-2 col-sm-2"><b>Contacto</b></div>
         		<div class="col-md-2 col-lg-2 col-xs-2 col-sm-2"><b>$$$$</b></div>
         	</div>
 
         	@yield('pagos')
 
-
-
         </div>	
+<br><br><center>
+        <div class="container busqueda">
+          <div class="row">
+            <form class="form-inline">
+
+              <div class="form-group col-md-2 col-md-offset-3 col-lg-2 col-lg-offset-3 col-xs-2 col-sm-2 col-xs-offset-3 col-sm-offset-3">
+                <select class="form-control" name="type" required>
+                   <option value="1">Nombre</option>
+                   <option value="2">Apellido Paterno</option>
+                   <option value="3">Apellido Materno</option>
+                 </select>
+              </div>
+
+              <div class="form-group col-md-2 col-lg-2 col-xs-2 col-sm-2">
+                <input type="text" class="form-control" placeholder="Ingrese su busqueda">
+              </div>
+
+              <div class="col-md-2 col-lg-2 col-xs-2 col-sm-2">
+                <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon glyphicon-search "></span></button>
+              </div> 
+              
+
+            </form>
+          </div>
+        </div></center>
+<br><br>
+        <div class="container pagos pagos2">
+            <div class="row"><center><h2>Lista de Niñas Completa</h2></center>
+            <div class="col-md-8 col-lg-8 col-xs-7 col-sm-7"><b>Datos</b></div>
+            <div class="col-md-2 col-lg-2 col-xs-3 col-sm-3"><b>$$$$</b></div>
+            <div class="col-md-2 col-lg-2 col-xs-2 col-sm-2"><b>Dar de baja</b></div>
+          </div>
+
+          @yield('pagos2')
+
+        </div>  
+
+        <br>
+        @yield('botones')
 
         <div id="InscribirModal" class="modal fade" role="dialog">
                 <div class="modal-dialog my-modal-dialog">
@@ -80,46 +156,7 @@
             </div>
 
 
-        <div id="CumpleañosModal" class="modal fade" role="dialog">
-                <div class="modal-dialog my-modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header my-modal-header"><center>
-                          <div class="row">      
-                          <div class="col-md-11 Modal-Text">
-                          <h1>¡Feliz Cumpleaños!</h1>
-                          </div>
-                          <div class="col-md-1">
-                              <button type="button" class="close my-close" data-dismiss="modal"> &times;
-                        </button>
-                          </div>
-                          </div></center>
-                    </div>
-                    <div class="modal-body my-modal-body">
-                     
-                        <div class="container Inscripcion">
-                            <div class="row">
-                            	<div class="col-md-5">
-                            		<h2 class="text-birth">Estas son las niñas que cumplen años este mes!</h2><br>
-                            		<ul class="list-birth">
-                            			<li><img src="Images/flor2.png" class="img-responsive img-list">&nbsp;Nombre <b>9</b> de Julio</li>
-                            			<li><img src="Images/flor2.png" class="img-responsive img-list">&nbsp;Nombre <b>9</b> de Julio</li>
-                            			<li><img src="Images/flor2.png" class="img-responsive img-list">&nbsp;Nombre <b>9</b> de Julio</li>
-                            			<li><img src="Images/flor2.png" class="img-responsive img-list">&nbsp;Nombre <b>9</b> de Julio</li>
-                            			<li><img src="Images/flor2.png" class="img-responsive img-list">&nbsp;Nombre <b>9</b> de Julio</li>
-                            		</ul>
-                            	</div>
-                            	<div class="col-md-4">
-                            	<img src="Images/cake.png" class="img-responsive img-cake">
-                            </div>
-                              
-                            </div>
-                        </div>
-
-                    </div>                  
-                </div>
-                </div>
-            </div>
-
+       
         <br><br><br><br><br>
     <script type="text/javascript" src="{!! asset('js/app.js') !!}"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

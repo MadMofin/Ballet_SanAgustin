@@ -3,21 +3,69 @@
 @section('title','Ballet San Agustin')
 
 @section('pagos')
+@if(count($pagos) == 0)
 <div class="row datos-pagos">
-    <div class="col-md-1 col-lg-1 col-xs-1 col-sm-1 visible-md-inline visible-lg-inline">1641957</div>
+    <div class="col-md-12 col-lg-12 col-xs-12 col-sm-12"><center><b><p>Parece ser que hoy no hay pagos pendientes :)</p></b></center>
+  </div>
+</div>
+@else
+@foreach($pagos as $pago)
+<div class="row datos-pagos">
     <div class="col-md-5 col-lg-5 col-xs-6 col-sm-6">
-    	<p><b>Nombre de la niña:</b> nombre niña</p>
-    	<p><b>Tutor:</b> Nombre tutor</p>
-    	<p><b>Direccion:</b> Direccion niña</p>
+      <b>Nombre de la niña:</b>{{ $pago->Nina->{'appat-user'} }} {{ $pago->Nina->{'apmat-user'} }} {{ $pago->Nina->{'nombre-user'} }} <br>
+      <b>Tutor:</b> {{ $pago->Nina->Tutor->{'nombre-tutor'} }}<br>
+      
     </div>
-    <div class="col-md-2 col-lg-2 col-xs-2 col-sm-2"><b><p>Clases: </b>Ballet, Jazz, HipHop</p></div>
-    <div class="col-md-2 col-lg-2 col-xs-2 col-sm-2"><p>$1400</p></div>
+    <div class="col-md-3 col-lg-3 col-xs-2 col-sm-2">
+      <b>Direccion:</b> {{ $pago->Nina->Tutor->{'direccion-tutor'} }}</b> <br>
+      <b>Telefono:</b> {{ $pago->Nina->Tutor->{'telefono'} }}</b>
+  </div>
+    <div class="col-md-2 col-lg-2 col-xs-2 col-sm-2"><p>${{ $pago->Nina->{'pago'} }}</p></div>
     <div class="col-md-1 col-lg-1 col-xs-1 col-sm-1">
-    	<form>
-    		<input type="submit" value="&#x2714" class="btn btn-pagado">
-    	</form>
+      <form method="post" action="PagarNina/{{ $pago->Nina->{'id-user'} }}">
+        {{ csrf_field() }}
+        <input type="submit" value="&#x2714" class="btn btn-pagado">
+      </form>
     </div>
 </div>
+@endforeach
+@endif
+@endsection
+
+@section('pagos2')
+@foreach($ninas as $nina)
+<div class="row datos-pagos">
+    <div class="col-md-8 col-lg-8 col-xs-7 col-sm-7">
+        <b>Nombre de la niña:</b> {{ $nina->{'appat-user'} }} {{ $nina->{'apmat-user'} }} {{ $nina->{'nombre-user'} }}<br>
+        <b>Tutor:</b> {{ $nina->tutor->{'nombre-tutor'} }} {{ $nina->tutor->{'appat-tutor'} }} {{ $nina->tutor->{'apmat-tutor'} }}<br>
+        <b>Direccion:</b> {{ $nina->tutor->{'direccion-tutor'} }}<br>
+    </div>
+    <div class="col-md-2 col-lg-2 col-xs-3 col-sm-3">
+      <form method="post" action="CambiarPago/{{ $nina->{'id-user'} }}">
+        {{ csrf_field() }}
+          <div class="input-group">
+                <span class="input-group-addon pesos-icon"><span class="glyphicon glyphicon-usd"></span></span>
+                <input type="text" class="form-control pago-input" value="{{ $nina->{'pago'} }}" placeholder="Ingrese un valor" name="newpago">
+                <span class="input-group-addon span-pago"><input type="submit" value="&#x2710" class="btn btn-pagado btn-cambiar-pago"></span>
+          </div>                  
+    </form>
+    </div>
+    <div class="col-md-1 col-lg-1 col-xs-1 col-sm-1">
+        <form action="BorrarNina/{{ $nina->{'id-user'} }}" method="post">
+          {{ csrf_field() }}
+            <input type="submit" value="&#x2718" class="btn btn-pagado btn-borrar">
+        </form>
+    </div>
+</div>
+@endforeach
+@endsection
+
+@section('botones')
+<div class="container botones">
+    <div class="row">
+      <div class="col-md-12"> <center>{!! $ninas->render() !!}</center></div>
+    </div>
+  </div>
 @endsection
 
 @section('agregar-usuario')
@@ -101,4 +149,27 @@
                                         </div>
                                     <input type="submit" value="Inscribir" class="btn btn-default btn-inscripcion">
                                 </form>
+@endsection
+
+@section('cumpleanos')
+  @foreach($cumple as $nina)
+    <li><img src="Images/flor2.png" class="img-responsive img-list">&nbsp;
+
+    @php
+    $dia = date('d',strtotime($nina->birthday));
+    @endphp
+
+    Dia <b>{{$dia}} </b>{{ $nina->{'nombre-user'} }}
+
+  @endforeach
+@endsection
+
+@section('fecha-hoy')
+
+    @php
+    $fecha = date('d M Y');;
+    @endphp
+
+    {{ $fecha }}
+
 @endsection

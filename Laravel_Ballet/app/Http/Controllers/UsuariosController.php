@@ -17,8 +17,31 @@ class UsuariosController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        //
+    {   
+        $dia = date('d');
+        $mes = date('m');
+        $anno = date('y');
+        $pagos = usuade::where([
+                    [function($query)use ($dia, $mes, $anno){
+                        $query->where('fecha','<=',$anno.'-'.$mes.'-'.$dia);
+                    }],
+                    ['pagado','=',0]
+                ])->get();
+
+
+
+        $cumple = user::whereMonth('birthday', '=', $mes)->get();
+        $ninas = user::orderBy('appat-user', 'asc')->paginate(10);
+        $clases = clase::all();
+
+        $arreglo = compact(
+            ['ninas',$ninas],
+            ['clases',$clases],
+            ['cumple',$cumple],
+            ['pagos',$pagos]
+        );
+
+        return view('admin')->with($arreglo);
     }
 
     /**
@@ -51,6 +74,11 @@ class UsuariosController extends Controller
         $telefono = $request->get('telefono');
         $clases = $request->get('clasesArray');
         $pago = $request->get('pago');
+        $fechahoy = date('y-m-d');
+
+        if(date('d') == 29 && date('m') == 2){
+            $fechahoy = date('y').'-'.date('m').'-28';
+        }
 
         $verificaciontutor = tutor::where([
             ['nombre-tutor','=',$nombretutor],
@@ -82,7 +110,7 @@ class UsuariosController extends Controller
                         "id-administrador" => '1',
                         "pago" => $pago,
                         "birthday" => $birth,
-                        "fecha-inscripcion" => date('d-m-y')
+                        "fecha-inscripcion" =>  $fechahoy
             ));
 
             $nina->save();
@@ -101,7 +129,7 @@ class UsuariosController extends Controller
 
             $fecha = $idultimanina->{'fecha-inscripcion'};
             $nuevafecha = strtotime ( '+1 month' , strtotime ( $fecha ) ) ;
-            $nuevafecha = date ( 'd-m-y' , $nuevafecha );
+            $nuevafecha = date ( 'y-m-d' , $nuevafecha );
 
             $ninapago = new usuade(array(
                         "id-user" => $idultimanina->{'id-user'},
@@ -122,7 +150,7 @@ class UsuariosController extends Controller
                         "id-administrador" => '1',
                         "pago" => $pago,
                         "birthday" => $birth,
-                        "fecha-inscripcion" => date('d-m-y')
+                        "fecha-inscripcion" =>  $fechahoy
             ));
 
             $nina->save();
@@ -143,7 +171,8 @@ class UsuariosController extends Controller
 
             $fecha = $idultimanina->{'fecha-inscripcion'};
             $nuevafecha = strtotime ( '+1 month' , strtotime ( $fecha ) ) ;
-            $nuevafecha = date ( 'd-m-y' , $nuevafecha );
+            $nuevafecha = date ( 'y-m-d' , $nuevafecha );
+
 
 
             $ninapago = new usuade(array(
@@ -159,49 +188,52 @@ class UsuariosController extends Controller
         return redirect('/administracion');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show()
     {
-        $clases = clase::all();
-        return view('admin')->with('clases',$clases);
+        
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    public function ModifyPay(Request $request, $id){
+            user::where('id-user', '=' , $id)->update(['pago' => $request->get('newpago')]);
+
+            return back();
+    }
+
     public function edit($id)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+    public function Pay($id)
     {
-        //
+        
+        $ultimafecha = usuade::where('id-user', '=' , $id
+            )->orderby('fecha','DESC')->first();
+        usuade::where('id-user', '=' , $id
+            )->orderby('fecha','DESC')->first()->update(['pagado' => 1]);
+
+        $nina = user::find($id);
+
+        $fecha = $ultimafecha->{'fecha'};
+        $nuevafecha = strtotime ( '+1 month' , strtotime ( $fecha ) ) ;
+        $nuevafecha = date ( 'y-m-d' , $nuevafecha );
+
+
+        $nuevopago = new usuade(array(
+                        "id-user" => $id,
+                        "adeudo" => $nina->{'pago'},
+                        "fecha"  => $nuevafecha,
+                        "pagado" => 0
+            ));
+        $nuevopago->save();
+        return back();
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
-        //
+        user::where('id-user','=',$id)->delete();
+        usucla::where('id-user','=',$id)->delete();
+        usuade::where('id-user','=',$id)->delete();
+        return back();
     }
 }
