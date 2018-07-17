@@ -2,6 +2,30 @@
 
 @section('title','Ballet San Agustin')
 
+@section('busqueda')
+<form class="form-inline" method="post" action="busqueda">
+  {{ csrf_field() }}
+
+              <div class="form-group col-md-2 col-md-offset-3 col-lg-2 col-lg-offset-3 col-xs-2 col-sm-2 col-xs-offset-3 col-sm-offset-3">
+                <select class="form-control" name="type" required>
+                   <option value="1">Nombre</option>
+                   <option value="2">Apellido Paterno</option>
+                   <option value="3">Apellido Materno</option>
+                   <option value="4">todos</option>
+                 </select>
+              </div>
+
+              <div class="form-group col-md-2 col-lg-2 col-xs-2 col-sm-2">
+                <input type="text" class="form-control" placeholder="Ingrese su busqueda" name="termino">
+              </div>
+
+              <div class="col-md-2 col-lg-2 col-xs-2 col-sm-2">
+                <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon glyphicon-search "></span></button>
+              </div> 
+              
+
+            </form>
+@endsection
 @section('pagos')
 @if(count($pagos) == 0)
 <div class="row datos-pagos">
@@ -33,6 +57,13 @@
 @endsection
 
 @section('pagos2')
+@if(count($ninas) == 0)
+     <div class="row datos-pagos">
+    <div class="col-md-8 col-lg-8 col-xs-7 col-sm-7">
+      <b>No se encontraron resultados :(</b>
+    </div>
+</div> 
+@else
 @foreach($ninas as $nina)
 <div class="row datos-pagos">
     <div class="col-md-8 col-lg-8 col-xs-7 col-sm-7">
@@ -58,6 +89,7 @@
     </div>
 </div>
 @endforeach
+@endif
 @endsection
 
 @section('botones')

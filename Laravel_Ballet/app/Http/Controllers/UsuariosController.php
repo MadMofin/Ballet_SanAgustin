@@ -11,13 +11,11 @@ use App\usuade;
 
 class UsuariosController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    
     public function index()
     {   
+
+
         $dia = date('d');
         $mes = date('m');
         $anno = date('y');
@@ -44,22 +42,6 @@ class UsuariosController extends Controller
         return view('admin')->with($arreglo);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
 
@@ -188,20 +170,56 @@ class UsuariosController extends Controller
         return redirect('/administracion');
     }
 
-    public function show()
+    public function show(Request $request)
     {
-        
+            $tipo = $request->get('type');
+            $termino = $request->get('termino');
+
+            switch ($tipo) {
+                case '1':
+                    $ninas = user::where('nombre-user','like','%'.$termino.'%')->paginate(10);
+                break;
+                case '2':
+                    $ninas = user::where('appat-user','like','%'.$termino.'%')->paginate(10);
+                break;
+                case '3':
+                    $ninas = user::where('apmat-user','like','%'.$termino.'%')->paginate(10);
+                break;
+                case '4':
+                     $ninas = user::orderBy('appat-user', 'asc')->paginate(10);
+                break;
+            }
+
+        $dia = date('d');
+        $mes = date('m');
+        $anno = date('y');
+        $pagos = usuade::where([
+                    [function($query)use ($dia, $mes, $anno){
+                        $query->where('fecha','<=',$anno.'-'.$mes.'-'.$dia);
+                    }],
+                    ['pagado','=',0]
+                ])->get();
+
+
+
+        $cumple = user::whereMonth('birthday', '=', $mes)->get();
+        $clases = clase::all();
+
+        $arreglo = compact(
+            ['ninas',$ninas],
+            ['clases',$clases],
+            ['cumple',$cumple],
+            ['pagos',$pagos]
+        );
+
+        return view('admin')->with($arreglo);
+
     }
 
     public function ModifyPay(Request $request, $id){
             user::where('id-user', '=' , $id)->update(['pago' => $request->get('newpago')]);
 
             return back();
-    }
-
-    public function edit($id)
-    {
-        //
     }
 
     public function Pay($id)

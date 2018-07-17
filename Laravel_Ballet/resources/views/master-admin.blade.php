@@ -87,31 +87,12 @@
 <br><br><center>
         <div class="container busqueda">
           <div class="row">
-            <form class="form-inline">
-
-              <div class="form-group col-md-2 col-md-offset-3 col-lg-2 col-lg-offset-3 col-xs-2 col-sm-2 col-xs-offset-3 col-sm-offset-3">
-                <select class="form-control" name="type" required>
-                   <option value="1">Nombre</option>
-                   <option value="2">Apellido Paterno</option>
-                   <option value="3">Apellido Materno</option>
-                 </select>
-              </div>
-
-              <div class="form-group col-md-2 col-lg-2 col-xs-2 col-sm-2">
-                <input type="text" class="form-control" placeholder="Ingrese su busqueda">
-              </div>
-
-              <div class="col-md-2 col-lg-2 col-xs-2 col-sm-2">
-                <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon glyphicon-search "></span></button>
-              </div> 
-              
-
-            </form>
+            @yield('busqueda')
           </div>
         </div></center>
 <br><br>
         <div class="container pagos pagos2">
-            <div class="row"><center><h2>Lista de Niñas Completa</h2></center>
+            <div class="row"><center><h2>Lista de Niñas</h2></center>
             <div class="col-md-8 col-lg-8 col-xs-7 col-sm-7"><b>Datos</b></div>
             <div class="col-md-2 col-lg-2 col-xs-3 col-sm-3"><b>$$$$</b></div>
             <div class="col-md-2 col-lg-2 col-xs-2 col-sm-2"><b>Dar de baja</b></div>

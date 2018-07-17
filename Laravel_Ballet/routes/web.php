@@ -17,6 +17,8 @@ Route::get('/', function () {
 
 Route::get('/administracion','UsuariosController@index');
 
+Route::post('/busqueda','UsuariosController@show');
+
 Route::post('/AgregarUsuario','UsuariosController@store');
 
 Route::post('/CambiarPago/{id}','UsuariosController@ModifyPay')->where(['id' => '[0-9]+']);
