@@ -49,12 +49,13 @@
                           </div></center>
                     </div>
                     <div class="modal-body">
-                      <form action="/action_page.php">
+                      <form action="/login" method="post">
+                         {{ csrf_field() }}
                           <div class="container">
                               <div class="row">
                                   <div class="col-md-3">
                                       <label class="form-label">Usuario: </label>
-                                      <input type="text" name="user" placeholder="Ingresa tu usuario"  class="form-control">
+                                      <input type="text" name="admin" placeholder="Ingresa tu usuario"  class="form-control">
                                   </div>
                                   <div class="col-md-3">
                                       <label class="form-label">Contraseña: </label>

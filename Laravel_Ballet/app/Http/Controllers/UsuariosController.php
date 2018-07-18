@@ -8,13 +8,31 @@ use App\tutor;
 use App\clase;
 use App\usucla;
 use App\usuade;
+use App\admin;
+use Session;
 
 class UsuariosController extends Controller
 {
-    
+    public function login(Request $request)
+    {
+        $validar = admin::where([
+            ['user-administrador','=',$request->get('admin')],
+            ['pass-administrador','=',$request->get('pass')]
+        ])->first();
+
+        if($validar == NULL){
+            return back();
+        }else{
+            Session::put('admin',1);
+            return redirect('/administracion');
+        }
+    }
+
     public function index()
     {   
-
+        if(Session::get('admin') == NUll){
+            return redirect('/');
+        }else{
 
         $dia = date('d');
         $mes = date('m');
@@ -40,6 +58,7 @@ class UsuariosController extends Controller
         );
 
         return view('admin')->with($arreglo);
+        }
     }
 
     public function store(Request $request)

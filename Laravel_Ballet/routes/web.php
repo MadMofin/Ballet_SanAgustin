@@ -27,3 +27,5 @@ Route::post('/BorrarNina/{id}','UsuariosController@destroy')->where(['id' => '[0
 
 Route::post('/PagarNina/{id}','UsuariosController@Pay')->where(['id' => '[0-9]+']);
 
+Route::post('/login','UsuariosController@login');
+
